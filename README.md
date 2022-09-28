@@ -12,7 +12,7 @@ Honestly the use cases are pretty niche. One example is when using `subprocess.P
 
 ### Aren't there built-in functions that will do this for you???
 
-Through my testing, I have found that when using `Popen()` to run executables (rather than python scripts) that using the built-in functions that flush the `stdout` of the child process do not work. Changing the buffering settings also did not work (this is mentioned in that [SO post](https://stackoverflow.com/questions/1410849) linked earlier). So yes, they are there but no they don't work.
+Through my testing, I have found that when using `Popen()` to run executables (rather than python scripts) that using the built-in functions that flush the `stdout` of the child process do not work. Changing the buffering settings also did not work (this is mentioned in that [SO post](https://stackoverflow.com/questions/1410849) linked earlier). So yes they are there but, no, they don't seem to work in this context.
 <br>
 <br>
 
@@ -59,7 +59,7 @@ except TimeoutExpired:
     outs, errs = proc.communicate()
     print(outs) # Will print nothing!
 ```
-If we use this script to run the executable compiled from our [test_program.c](force_flush\resources\test_program.c), you will notice that the application does not return anything inside of the `outs` parameter returned by `proc.communicate()` inside of the `except` statement. So lets add the force_flush module to it!
+If we use this script to run the executable compiled from our [test_program.c](force_flush\resources\test_program.c), you will notice that when the TimeoutExpired exception is raised and the `proc.communicate()` call completes, the `outs` variable will be empty! So lets see what happens when we add the force_flush module to it!
 ```py
 ...
 from force_flush.flush_types import fflush_stdout
@@ -88,4 +88,4 @@ As this is just a personal project, my last goal will be to implement a "non-inv
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
