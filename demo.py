@@ -1,8 +1,8 @@
 import subprocess
 import os
 from force_flush.flush_types import fflush_stdout
-
-args = (os.path.dirname(__file__) + "\\force_flush\\resources\\test_program.exe").split()
+demo_exe_path = "\\force_flush\\resources\\demo_executable.exe"
+args = (os.path.dirname(__file__) + demo_exe_path).split()
 timeout_in_seconds = 4
 
 # Modified version of the example from python docs

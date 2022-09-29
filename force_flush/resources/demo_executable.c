@@ -3,8 +3,6 @@
 
 int main()
 {
-    char buf[1024] = {0};
-    setvbuf(stdout, buf, _IOFBF, 1024);
     while(TRUE)
     {
         printf("Testing this...");
